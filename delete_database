@@ -1,0 +1,20 @@
+[Docker] Remove all Docker volumes to delete the database
+    Radu Raicea edited this page on Sep 30, 2017 · 1 revision
+    If anything happens to the database and you can't seem to fix it, it might be best to completely delete the Docker volumes holding the database and recreating them.
+
+    Deleting all the containers
+    Before deleting the volumes, you need to delete all the existing containers using the following command (make sure the application is not running)
+
+        docker rm $(docker ps -a -q) -f
+    Deleting all the volumes
+    Once all the containers are deleted, you can delete all the Docker volumes on your computer using the following command
+
+        docker volume prune
+    If you don't want to delete all the Docker volumes on your computer, you can search for a specific one and deleting it
+
+        docker volume ls
+        docker volume rm <name_of_volume>
+    Recreating the volumes
+    Recreating the volumes is as simple as restarting the application
+
+        docker-compose up --buil
